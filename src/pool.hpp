@@ -31,7 +31,7 @@ public:
 			}
 		};
 
-		for(auto i = 0; i < threads; ++i)
+		for(unsigned i = 0; i < threads; ++i)
 			m_threads.emplace_back(worker);
 	}
 
@@ -85,7 +85,7 @@ public:
 			while(true)
 			{
 				Proc f;
-				for(auto n = 0; n < m_count * K; ++n)
+				for(unsigned n = 0; n < m_count * K; ++n)
 					if(m_queues[(i + n) % m_count].try_pop(f))
 						break;
 				if(!f && !m_queues[i].pop(f))
@@ -94,7 +94,7 @@ public:
 			}
 		};
 
-		for(auto i = 0; i < threads; ++i)
+		for(unsigned i = 0; i < threads; ++i)
 			m_threads.emplace_back(worker, i);
 	}
 
